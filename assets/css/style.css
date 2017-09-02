@@ -1,0 +1,22 @@
+body {
+	background: url(../images/map7.jpg);
+	background-size: cover;
+	z-index: -99;
+	text-align: center;
+}
+
+.wrapper {
+	width: 80%;
+	padding: 20px;
+	margin: auto;
+	margin-top: 50px;
+}
+
+.well {
+	width: 80%;
+	margin: auto;
+}
+
+.btn-guess {
+	width: 100%;
+}
