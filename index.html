@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
 <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   	<link rel="stylesheet" type="text/css" href="assets/css/bootswatch.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css"> 
 	<title>Map Trivia Game</title>
-	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<h1>Map Trivia Game</h1>
-<p>Can you answer these trivia questions without looking at a map?</p>
-<br/>
-<br/>
-<a href="#" id="start" class="btn btn-primary btn-lg">Let's Play!</a>
-<br/>
-<div class="well jumbotron">
-  <h3 id="question"></h3>
-  <br/><br/>
-  <form id="form">
-
-  </form>
-  <br/>
-  <a href="#" id="next" class="button">Next</a><br/>
-  <div id="progressbar" class="progress-bar progress-bar-striped"></div>
+<div class="jumbotron" id="initial">
+	<h1>Map Trivia Game</h1>
+	<p>Can you answer these trivia questions without looking at a map?</p>
+	<p><a href="#" id="startTimer" class="btn btn-primary btn-lg">Let's Play!</a></p>
 </div>
-<div id="result"></div>
 
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <script type="text/javascript" src="assets/javascript/app.js"></script>
+<div class="jumbotron" id="gameBlock">
+	<h1>Question</h1>
+	<p>Time remaining:</p>
+	<div class="panel panel-primary" id="buttonBox">
+		<p><a href="#" class="btn btn-lg btn-success">Text</a></p>
+		<p><a href="#" class="btn btn-lg btn-info">Text</a></p>
+		<p><a href="#" class="btn btn-lg btn-warning">Text</a></p>
+		<p><a href="#" class="btn btn-lg btn-danger">Text</a></p>
+	</div>
+	<div class="panel panel-primary" id="resultBox">
+		<p>That's correct!</p>
+	</div>
+	<div class="panel panel-primary" id="scoreBox">
+		<p>Game over!</p>
+		<p>Correct: 0</p>
+		<p>Incorrect: 5</p>
+		<P>You'd better study a map!</P>
+	</div>
+</div>
 
+
+<footer>
+	<h6>Copyright &copy; 2017 Chryssa Jones</h6>
+</footer>
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="assets/javascript.game.js"></script>
 </body>
 </html>
