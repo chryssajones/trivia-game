@@ -3,6 +3,7 @@ body {
 	background-size: cover;
 	z-index: -99;
 	text-align: center;
+	color: black;
 }
 
 .wrapper {
@@ -19,4 +20,26 @@ body {
 
 .btn-guess {
 	width: 100%;
+}
+
+.jumbotron {
+	border-radius: 10px;
+	background-color: #ABC8E5;
+	border: solid black 3px;
+}
+
+#gameBlock {
+	display: none;
+}
+
+#buttonBox {
+	display: none;
+}
+
+#resultBox {
+	display: none;
+}
+
+#scoreBox {
+	display: none;
 }
