@@ -15,26 +15,27 @@
 	<div class="jumbotron" id="initial">
 		<h1>Map Trivia Game</h1>
 		<p>Can you answer these trivia questions without looking at a map?</p><br>
-		<p><a href="#" id="startTimer" class="btn btn-primary btn-lg">Let's Play!</a></p>
+		<p><a href="#" id="playButton" class="btn btn-primary btn-lg">Let's Play!</a></p>
 	</div>
 
 	<div class="jumbotron" id="gameBlock" data-question="sample">
-		<h1>Question</h1>
-		<p>Time remaining:</p>
+		<h2><span id="spanQuestion"></span></h2>
+		<h4>Time remaining: <span id="spanTimer"></span><br></h4>
 		<div class="well well-lg" id="buttonBox">
-			<p><a href="#" class="btn btn-lg btn-guess btn-success">Text</a></p>
-			<p><a href="#" class="btn btn-lg btn-guess btn-info">Text</a></p>
-			<p><a href="#" class="btn btn-lg btn-guess btn-warning">Text</a></p>
-			<p><a href="#" class="btn btn-lg btn-guess btn-danger">Text</a></p>
+			<p><a href="#" id="guess0" class="btn btn-lg btn-guess btn-success">Text</a></p>
+			<p><a href="#" id="guess1" class="btn btn-lg btn-guess btn-info">Text</a></p>
+			<p><a href="#" id="guess2" class="btn btn-lg btn-guess btn-warning">Text</a></p>
+			<p><a href="#" id="guess3" class="btn btn-lg btn-guess btn-danger">Text</a></p>
 		</div>
 		<div class="well well-lg" id="resultBox">
-			<p>That's correct!</p>
+			<p><span id="spanResult"></span></p>
+			<p><span id="spanImage"></span></p>
 		</div>
 		<div class="well well-lg" id="scoreBox">
 			<p>Game over!</p>
-			<p>Correct: 0</p>
-			<p>Incorrect: 5</p>
-			<P>You'd better study a map!</P>
+			<p>Correct: <span id="spanCorrect"></span></p>
+			<p>Incorrect: <span id="spanIncorrect"></span></p>
+			<P><span id="spanAdvice"></span></P>
 		</div>
 	</div>
 </div>
@@ -42,8 +43,10 @@
 <footer>
 	<h6>Copyright &copy; 2017 Chryssa Jones</h6>
 </footer>
-<!--  	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   --> 	
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+	<script
+	  src="https://code.jquery.com/jquery-3.2.1.slim.js"
+	  integrity="sha256-tA8y0XqiwnpwmOIl3SGAcFl2RvxHjA8qp0+1uCGmRmg="
+	  crossorigin="anonymous"></script>
 	<script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 </html>
