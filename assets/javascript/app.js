@@ -25,7 +25,7 @@ var trivia = [{ //qestion 0
 }, { //question 4
 	question: "Interstate 40 ends in which east coast state?",
 	choices: ["Virgina", "North Carolina", "South Carolina", "Maryland"],
-	images: ["assets/images/northCarolina"],
+	images: ["assets/images/northCarolina.jpg"],
 	validAnswer: "North Carolina"
 }, { //question 5
 	question: "Which is the western-most state in the U.S.?",
@@ -69,24 +69,44 @@ var choiceC = "";
 var choiceD = "";
 var correctAnswer = "";
 var answerImg = "";
+var questionsUsed = [];
+var m = 0;
+var countDown = 0;
+
+$('#playButton').on('click', function() {
+	console.log("the start button was clicked");
+	startGame();
+});
+
+$('#resetButton').on('click', function() {
+	console.log("the reset button was clicked");
+	startGame();
+});
 
 function startGame() {
-	console.log("the 'startGame' function was called")
+	console.log("the 'startGame' function was called");
+	$('#initial').hide();
+	$('#resultBox').hide();
+	$('#scoreBox').hide();
 	$('#gameBlock').show();
 	$('#buttonBox').show();
-	$('#initial').hide();
 	questionsUsed = [];
 	correctScore = 0;
 	incorrectScore = 0;	
 	getQuestion();	
-	timer();
 };
 
-//this function gets a random question and passes in the answer choices from the object array
-var questionsUsed = [];
-var m = 0;
+function nextRound() {
+	console.log("the nextRound function was called");
+	$('#buttonBox').show();
+	$('#resultBox').hide();
+	$("#time").show();
+	getQuestion();	
+}
 
+//this function gets a random question and passes in the answer choices from the object array
 function getQuestion() {
+	console.log("the getQuestion function was called");
 	m = Math.floor((Math.random() * 10) + 0); //figure out how to set this var to min = 0, max = trivia.length so that I can add more questions without having to change this
 	console.log("Question #" + m);
 	questionsUsed.push(m);
@@ -102,44 +122,49 @@ function getQuestion() {
 	$('#guess2').text(choiceC);
 	$('#guess3').text(choiceD);
 	console.log("The correct answer is " + correctAnswer);
+	timer();
 };
 
-//this sets the timer
+//this starts the timer
 function timer() {
-	var countDown = 5;
+	console.log("the timer function was called");
+	countDown = 5;
+
+	//this will listen for an answer click
+	$(".btn-guess").on('click', function() {
+	clearInterval(interval);
+	console.log("the user clicked an answer button");
+	userGuess = event.target.id;
+		if (userGuess == "guess0") {
+			userGuess = choiceA;
+		} else if (userGuess == "guess1") {
+			userGuess = choiceB;
+		} else if (userGuess == "guess2") {
+			userGuess = choiceC;
+		} else {
+			userGuess = choiceD;
+		};
+	checkAnswer();
+	});
+
+	// this will count down the time until time's up, if there is no click event
 	var interval = setInterval(function() {
 		$('#spanTimer').text(countDown);
 		countDown -=1;
-		if (countDown == -1) {
-			console.log("time's up!")
-			clearInterval(interval);
-			$('#spanTimer').text("Time's Up!");
-			$('#spanResult').text("The answer is: " + correctAnswer);
-			endRound();
+			// this will stop the timer when it gets to 0
+			if (countDown == 0) {
+				clearInterval(interval);				
+				$('#spanTimer').text("Time's up!");
+				incorrectScore ++;
+				$('#spanResult').text("The answer is: " + correctAnswer);
+				endRound();
 			};
 		}, 1000);
-
-// this is an event handler to listen for the click answer and set the userGuess variable
-	$(".btn-guess").on('click', function() {
-		clearInterval(interval);
-		endRound();
-		userGuess = event.target.id;
-			if (userGuess == "guess0") {
-				userGuess = choiceA;
-			} else if (userGuess == "guess1") {
-				userGuess = choiceB;
-			} else if (userGuess == "guess2") {
-				userGuess = choiceC;
-			} else {
-				userGuess = choiceD;
-			};
-			console.log("The user picked " + userGuess);
-			checkAnswer();
-	});
 };
 
 // this function validates the user's answer
 function checkAnswer() {
+	console.log("The checkAnswer function was called");
 	$("#spanGuess").text("You guessed: " + userGuess)
 	if (userGuess == correctAnswer) {
 		$("#spanResult").text("That's correct!");
@@ -148,39 +173,41 @@ function checkAnswer() {
 		$("#spanResult").text("Sorry, that's incorrect.  The correct answer is " + correctAnswer + ".");
 		incorrectScore ++;
 	};
-	console.log("The answer was validated");
+	endRound();	
 };
 
 //this function ends the round when the timer runs out ... need to fix scope of m to persist after getQuestion
 function endRound() {
+	console.log("the endRound function was called");
 	$('#buttonBox').hide();
+	$("#time").hide();	
 	$('#resultBox').show();
 	$('#imageId').attr('src', answerImg);
-	// print "time's up!"
-	// show the image from the array table
-	// print "the correct answer is" + the answer
-	// call the checkRound() function
+	setTimeout(checkRound, 5000);
 };
 
 // this function decides whether or not to ask another question
 function checkRound() {
-	// check the questionsUsed array.length to find out how many questions have been asked.
-	// if <5, call the getQuestion() function again
-	// if == 5, call the gameOver() function
+	console.log("the checkRound function was called");
+	console.log(questionsUsed.length);
+	if (questionsUsed.length < 5) {
+		nextRound();
+	} else {
+		gameOver();
+	};
 };
 
 //this function ends the game after 5 questions
 function gameOver() {
-	console.log("game over!")
+	console.log("the gameOver function was called");
+	$('#buttonBox').hide();
+	$('#resultBox').hide();
+	$("#time").hide();
+	$("#scoreBox").show();
+	$("#spanQuestion").text("Game Over!")
+	$("#spanCorrect").text(correctScore);
+	$("#spanIncorrect").text(incorrectScore);
 };
-
-
-//this calls the function to start the game when the "let's play!" button is clicked
-$('#playButton').on('click', function() {
-	console.log("the start button was clicked")
-	startGame();
-});
-
 
 
 

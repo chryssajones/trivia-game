@@ -20,7 +20,7 @@
 
 	<div class="jumbotron" id="gameBlock" data-question="sample">
 		<h2><span id="spanQuestion"></span></h2>
-		<h4>Time remaining: <span id="spanTimer"></span><br></h4>
+		<h4 id="time">Time remaining: <span id="spanTimer"></span><br></h4>
 		<div class="well well-lg" id="buttonBox">
 			<p><a href="#" id="guess0" class="btn btn-lg btn-guess btn-success">Text</a></p>
 			<p><a href="#" id="guess1" class="btn btn-lg btn-guess btn-info">Text</a></p>
@@ -34,10 +34,11 @@
 			<div><img id="imageId" src=""></span></div>
 		</div>
 		<div class="well well-lg" id="scoreBox">
-			<p>Game over!</p>
+			<p>Here's your final score:</p>
 			<p>Correct: <span id="spanCorrect"></span></p>
 			<p>Incorrect: <span id="spanIncorrect"></span></p>
 			<P><span id="spanAdvice"></span></P>
+			<p><a href="#" id="resetButton" class="btn btn-primary btn-lg">Play Again</a></p>
 		</div>
 	</div>
 </div>
